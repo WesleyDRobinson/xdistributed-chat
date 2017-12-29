@@ -1,7 +1,7 @@
 {
   "name": "pubsub-poc",
   "version": "0.0.1",
-  "description": "Demo at: https://pubsub-poc-irxklcchpf.now.sh",
+  "description": "Demo at: https://pubsub-poc-ugdlbbvfsf.now.sh",
   "main": "index.js",
   "dependencies": {
     "ipfs": "^0.27.5",
