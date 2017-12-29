@@ -1,0 +1,27 @@
+{
+  "name": "pubsub-poc",
+  "version": "0.0.1",
+  "description": "Demo at: https://pubsub-poc-irxklcchpf.now.sh",
+  "main": "index.js",
+  "dependencies": {
+    "ipfs": "^0.27.5",
+    "ipfs-pubsub-room": "^1.1.4",
+    "js-ipfs": "0.0.301",
+    "http-server": "^0.10.0"
+  },
+  "devDependencies": {
+    "browserify": "^14.5.0",
+    "watchify": "^3.9.0"
+  },
+  "scripts": {
+    "build": "browserify src/app.js -o public/js/app.js",
+    "start": "http-server",
+    "watch": "watchify src/app.js -d -o public/js/app.js -v --delay 500"
+  },
+  "author": "wesley",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/presencetools/p2p-poc-browser"
+  }
+}
