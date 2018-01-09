@@ -4,21 +4,26 @@
   "description": "Demo at: https://pubsub-poc-ugdlbbvfsf.now.sh",
   "main": "index.js",
   "dependencies": {
+    "http-server": "^0.10.0",
     "ipfs": "^0.27.5",
     "ipfs-pubsub-room": "^1.1.4",
-    "js-ipfs": "0.0.301",
-    "http-server": "^0.10.0"
+    "js-ipfs": "0.0.301"
   },
   "devDependencies": {
-    "browserify": "^14.5.0",
-    "watchify": "^3.9.0"
+    "npm-run-all": "^4.1.2",
+    "webpack": "^3.10.0"
   },
   "scripts": {
-    "build": "browserify src/app.js -o public/js/app.js",
-    "start": "http-server",
-    "watch": "watchify src/app.js -d -o public/js/app.js -v --delay 500"
+    "build": "webpack src/app.js public/js/app.js",
+    "build:watch": "webpack -w -d src/app.js public/js/app.js",
+    "dev": "npm-run-all -p build:watch start",
+    "start": "http-server"
   },
-  "author": "wesley",
+  "now": {
+    "public": false,
+    "alias": "distributed"
+  },
+  "author": "2ep2",
   "license": "ISC",
   "repository": {
     "type": "git",

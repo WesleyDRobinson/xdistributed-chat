@@ -1,7 +1,7 @@
-const IPFS = require('ipfs')
+// const IPFS = require('ipfs')
 const Room = require('ipfs-pubsub-room')
 const repo = () => `node/presence-poc/${Math.random()}`
-const node = new IPFS({
+const node = new Ipfs({
     repo: repo(),
     EXPERIMENTAL: {
         pubsub: true
@@ -9,6 +9,7 @@ const node = new IPFS({
     config: {
         Addresses: {
             Swarm: [
+                '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star',
                 '/dns4/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star'
             ]
         }
@@ -30,10 +31,16 @@ node.once('ready', () => node.id((err, data) => {
     if (err) throw err
 
     console.log(`IPFS node ready with address ${data.id}`)
+}))
 
-    const room = Room(node, 'presence-poc')
+const startRoom = (name) => {
+    const room = Room(node, name)
 
-    room.on('peer joined', (peer) => serveToast(peer, 'joined'))
+    room.on('peer joined', (peer) => {
+        serveToast(peer, 'joined')
+        document.getElementById('send-it').disabled = false
+        document.getElementById('message-desc').textContent = 'Publish your message to connected peers'
+    })
     room.on('peer left', (peer) => serveToast(peer, 'left'))
 
     room.on('message', (message) => {
@@ -48,7 +55,11 @@ node.once('ready', () => node.id((err, data) => {
         output.appendChild(msg)
     })
 
-    const form = document.querySelector('form')
+    document.getElementById('room-heading').textContent = name
+    let roomElement = document.getElementById('room')
+    roomElement.classList.remove('dn')
+
+    const form = document.getElementById('send-message')
     form.onsubmit = (e) => {
         e.preventDefault()
 
@@ -57,4 +68,14 @@ node.once('ready', () => node.id((err, data) => {
         form.reset()
         return false
     }
-}))
+}
+
+const roomForm = document.getElementById('start-room')
+roomForm.onsubmit = (e) => {
+    e.preventDefault()
+    roomForm[1].disabled = true
+    let name = roomForm[0].value || 'default room name'
+    startRoom(name)
+    roomForm.reset()
+    return false
+}
