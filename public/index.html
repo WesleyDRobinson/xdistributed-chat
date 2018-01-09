@@ -7,26 +7,41 @@
     <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
 </head>
 <body class="bg-washed-green">
-<div id="input">
-    <form class="pa4 black-80">
+<div>
+    <form id="start-room" class="pa4 black-80">
         <div class="measure">
-            <label for="message-entry" class="f6 b db mb2">New Message</label>
-            <input id="message-entry" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text"
-                   aria-describedby="name-desc">
-            <button class="button-reset f4 fw9 pointer dim ph3 pv2 mr2 br0 bw0 w-20 bg-green">
-                ➤
+            <label for="room-name" class="f6 b db mb2">Room Name</label>
+            <input id="room-name" class="input-reset w-80 pa2 mb2 mr0 ba b--black-20"
+                   type="text" aria-describedby="room-desc">
+            <button class="button-reset w-20 ph3 pv2 ml0 br0 bw0 bg-green pointer dim">
+                START
             </button>
-            <small id="message-desc" class="f6 black-60 mb2">Publish your message to connected peers</small>
+            <small id="room-desc" class="f6 black-60 mb2">a room to connect to peers</small>
         </div>
     </form>
 </div>
-<div class="pa4 bg-dark-blue">
-    <h3 class="light-blue">Messages</h3>
-    <div id="output"></div>
+<div id="room" class="dn">
+    <form id="send-message" class="pa4 black-80">
+        <h1 id="room-heading"></h1>
+        <div class="measure">
+            <label for="message-entry" class="f6 b db mb2">New Message</label>
+            <input id="message-entry" class="input-reset ba b--black-20 pa2 mb2 db w-100"
+                   type="text"
+                   aria-describedby="message-desc">
+            <button id="send-it" disabled class="button-reset f4 fw9 pointer dim ph3 pv2 mr2 br0 bw0 w-20 bg-green">
+                ➤
+            </button>
+            <small id="message-desc" class="f6 black-60 mb2">waiting for peers to join the room</small>
+        </div>
+    </form>
+    <div class="pa4 bg-dark-blue">
+        <h3 class="light-blue">Messages</h3>
+        <div id="output"></div>
+    </div>
 </div>
 
 <!-- alternative to app.js: `const ipfs = require('ipfs')-->
-<!--<script src="https://unpkg.com/ipfs/dist/index.min.js"></script>-->
+<script src="https://unpkg.com/ipfs/dist/index.min.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
