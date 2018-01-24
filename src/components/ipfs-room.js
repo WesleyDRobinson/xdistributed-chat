@@ -55,7 +55,7 @@ class IpfsRoom extends HyperHTMLElement {
                 <div class="pointer mw4 pv2 ph3 br2 bg-light-blue black-70 tc ttu f7" 
                     data-call="showPeers" onclick="${this}">show peers</div>
             </div>
-            <div class="flex justify-start flex-wrap-ns">
+            <div class="flex justify-start flex-wrap">
                 <div class="w-100 mw6">
                     <form disabled id="send-message" data-call="sendIt" onsubmit="${this}">
                         <div class="measure">
