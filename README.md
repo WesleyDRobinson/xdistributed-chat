@@ -8,19 +8,25 @@ Dependencies:
 
 Clients are assigned a unique ID and announce to other peers that they have joined a certain "room" (in this case 'presence-pod')
 
-Demo: https://pubsub-poc-ugdlbbvfsf.now.sh
+Demo latest release: https://distributed.now.sh
 
 To run locally,
 
 1. `git clone git@bitbucket.org:presencetools/p2p-poc-browser.git`
-2. `npm install`, and `npm run build && npm run start`
+2. `npm install` or `yarn add`
+3. `npm run dev` or `yarn run dev`
 
-## Next steps
+To add new components, create the .js file in `src` folder.
+And Import them where used and don't worry about duplicating, webpack will shake it out
+If element is used "top-level" in index.html, like `<app-shell></app-shell>`, import the component in `src/app.js`
 
-What else do we need to see to "Prove out P2P realtime data connectivity between two instances of Client"?
+To build for production, run `npm run build` and the `public` folder is ready to serve.
+### Tooling
 
-> Note: Building IPFS in app.js with browserify produces a rather large 3.3 MB bundle, 
-while loading minified IPFS.js via `<script src="https://unpkg.com/ipfs/dist/index.min.js"></script>`
-will be quite small:
+CSS toolkits:
+tachyons.io: http://tachyons.io/
+animate.css: https://github.com/daneden/animate.css
 
-![smaller bundles](https://cloudup.com/cVp_1twyTPo+)
+Web Components:
+* built by extending the hyperHTMLElement: https://github.com/WebReflection/hyperHTML-Element
+* find more info on [hyperHTML wires](https://viperhtml.js.org/hyperhtml/documentation/#api-1)
