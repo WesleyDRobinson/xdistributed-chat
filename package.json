@@ -16,11 +16,12 @@
   "scripts": {
     "build": "webpack src/app.js public/js/app.js",
     "build:watch": "webpack -w -d src/app.js public/js/app.js",
+    "deploy": "npm run build && now",
     "dev": "npm-run-all -p build:watch start",
     "start": "http-server"
   },
   "now": {
-    "public": false,
+    "public": true,
     "alias": "distributed"
   },
   "author": "2ep2",
