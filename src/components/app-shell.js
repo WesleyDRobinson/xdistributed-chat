@@ -32,6 +32,7 @@ class AppShell extends HyperHTMLElement {
             console.log(`IPFS node ready with address ${data.id}`)
         }))
 
+        this.className = 'dt vh-100 w-100 bg-near-white gradientSquare'
         this.render()
     }
 

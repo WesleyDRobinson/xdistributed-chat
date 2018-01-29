@@ -8,6 +8,11 @@ Dependencies:
 
 Clients are assigned a unique ID and announce to other peers that they have joined a certain "room" (in this case 'presence-pod')
 
+### Todos
+
+* Add "Show own peerId" button/ screen
+* Add service worker for "offline" capability—"offline" is becoming a fuzzy line :)
+
 Demo latest release: https://distributed.now.sh
 
 To run locally,

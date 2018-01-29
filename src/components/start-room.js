@@ -2,28 +2,35 @@ import IpfsRoom from './ipfs-room'
 
 class StartRoom extends HyperHTMLElement {
     created() {
-        this.className = 'db measure pa2 black-80'
+        this.className = 'dtc v-mid measure pa2 black-80 avenir fadeIn animated'
         this.render()
     }
 
-    onclick(e) {
-        e.target.disabled = true
+    onsubmit(e) {
+        e.preventDefault()
         const name = document.getElementById('room-name').value
 
         const appShell = document.querySelector('app-shell')
-        const room = hyperHTML.bind(appShell)`<ipfs-room name="${name}"></ipfs-room>`
+        setTimeout(() => {
+            hyperHTML.bind(appShell)`<ipfs-room name="${name}"></ipfs-room>`
+        }, 1000)
+        this.classList.add('slideOutLeft')
     }
 
     render() {
         return this.html`
-            <label for="room-name" class="f6 b db mb2">Room Name</label>
-            <input id="room-name" class="input-reset w-80 pa2 mb2 mr0 ba b--black-20"
-                   type="text" aria-describedby="room-desc" placeholder="enter a room name">
-            <button class="button-reset w-20 ph3 pv2 ml0 br0 bw0 bg-green pointer dim"
-                    onclick="${this}">
-                START
-            </button>
-            <small id="room-desc" class="f6 black-60 mb2">a room to connect to peers</small>`
+            <h1 class="f2 fw2 tc near-white courier">welcome to <span class="f3 fw7 near-black ttu avenir tracked">d</span>istributed <span class="f3 fw7 near-black ttu avenir tracked">c</span>hat</h1>
+            <form class="flex flex-column justify-center items-center mw6 center" onsubmit="${this}">
+                <label id="room-desc" for="room-name" class="mb3 near-black fw5">create or join a room</label>
+                <input id="room-name" class="input-reset w-80 pt2 mb3 bg-transparent ba b--light-purple bt-0 bl-0 br-0 bg-animate hover-bg-lightest-blue tc outline-transparent"
+                       type="text" aria-describedby="room-desc" placeholder="room name" autofocus>
+                <input class="button-reset w4 ph4 pv2 br-pill bn bg-purple pointer o-80 glow ttu tracked near-white"
+                        type="submit" value="go">
+            </form>`
+    }
+
+    typeIt() {
+
     }
 }
 

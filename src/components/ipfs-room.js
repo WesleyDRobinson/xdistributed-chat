@@ -1,14 +1,13 @@
 const Room = require('ipfs-pubsub-room')
 import ToastAnnounce from './toast-announce'
 
-function serveToast(msg) {
-    const toast = hyperHTML.wire()`<toast-announce>${msg}</toast-announce>`
-    document.getElementById('toast-container').appendChild(toast)
-}
-
 class IpfsRoom extends HyperHTMLElement {
     static get observedAttributes() {
         return ['name']
+    }
+
+    get defaultState() {
+        return {peers: 0}
     }
 
     created() {
@@ -20,60 +19,59 @@ class IpfsRoom extends HyperHTMLElement {
         // add room functionality
         // announces when a new peer joins the room
         room.on('peer joined', (peer) => {
-            serveToast(`peer joined: ${peer}`)
-            document.forms['send-message'][1].disabled = false
-            document.getElementById('message-desc').textContent = 'Publish your message to connected peers'
+            this.setState({peers: this.state.peers + 1})
+            this.serveToast(`peer joined: ${peer}`)
         })
 
         // announces when a peer leaves the room
-        room.on('peer left', (peer) => serveToast(`peer left: ${peer}`))
+        room.on('peer left', (peer) => {
+            this.setState({peers: this.state.peers - 1})
+            this.serveToast(`peer left: ${peer}`)
+        })
 
         // build the message and add to messages output
         room.on('message', (message) => {
             // message.data is a buffer
-            let string = message.data.toString()
-            let msg = hyperHTML.wire()`
-                <p class="pa2 mt0 mb2 bg-near-white near-black lh-copy">
-                    ${string} 
-                    <small class="db">from: ${message.from}</small>
-                </p>`
+            let msgDiv = hyperHTML.wire(message)`
+                <div class="flex flex-wrap justify-between items-baseline near-black bg-transparent lh-copy slideInUp animated">
+                    <div class="ph2 pt1 measure measure-wide-ns bg-animate hover-bg-near-white">${message.data.toString()}</div>
+                    <div class="dn db-ns mt1 mh3 ba b--purple b--dotted bl-0 bt-0 br-0 flex-grow-1 f7"></div>
+                    <div class="pl2 pa0-ns f7 black-60">from: ${message.from}</div>
+                </div>`
 
             let output = document.getElementById('output')
-            output.classList.add('bl', 'bw2', 'b--light-blue')
-            output.appendChild(msg)
+            output.classList.add('bl', 'bw1', 'b--light-blue')
+            output.appendChild(msgDiv)
         })
 
         this.room = room
-        this.className = 'db pa2'
+        this.className = 'db h-100 flex flex-column justify-between animated slideInLeft'
         this.render()
     }
 
     render() {
         this.html`
-            <div class="flex items-center avenir">
-                <h1 id="room-heading" class="mr4 lh-title">${this.name}</h1>
-                <div class="pointer mw4 pv2 ph3 br2 bg-light-blue black-70 tc ttu f7" 
-                    data-call="showPeers" onclick="${this}">show peers</div>
+            <div id="room-heading" class="o-80 flex items-center w-100 cf pa2 gradientGY avenir">
+                <h1 class="mv0 mr2 pv2 lh-title f2 fw2 tj near-white">${this.name}</h1> 
+                <div class="pointer grow ph2 pv2 br-pill ba b--purple bg-purple near-white tracked tc ttu f7" 
+                        data-call="showPeers" onclick="${this}">${this.state.peers} peers</div>
+                <div class="absolute right-1 pointer grow fr ph2 pv2 br-pill ba b--blue bg-blue near-white tracked tc ttu f7" 
+                        data-call="showId" onclick="${this}">my id</div>
             </div>
-            <div class="flex justify-start flex-wrap-ns">
-                <div class="w-100 mw6">
-                    <form disabled id="send-message" data-call="sendIt" onsubmit="${this}">
-                        <div class="measure">
-                            <label for="message-entry" class="f6 b db mb2 black-80">new message</label>
-                            <input id="message-entry" class="input-reset ba b--black-20 pa2 mb2 db w-100"
-                                   type="text" aria-describedby="message-desc">
-                            <button id="send-it" disabled class="button-reset f4 fw9 pointer dim ph3 pv2 mr2 br0 bw0 w-20 bg-green">
-                                ➤
-                            </button>
-                            <small id="message-desc" class="f6 black-60 mb2">waiting for peers to join the room</small>
-                        </div>
-                    </form>
-                </div>
-    
-                <div class="w-100 mw7-l ml2">
-                    <h1 class="pa2 f5 tc ttu tracked lh-title near-white bg-dark-blue">Messages</h1>
-                    <div id="output" class="pa2 measure"></div>
-                </div>
+            
+            <div id="messaging" class="flex flex-column justify-end pa2 overflow-hidden">
+                <div id="output" class="mw8 mb1 overflow-scroll"></div>
+                <form id="send-message" class="mw9 flex justify-around items-baseline ba b--gold bl-0 bt-0 br-0" data-call="sendIt" onsubmit="${this}">
+                        <label id="message-desc" for="message-entry" class="clip">broadcast a message to the room</label>
+                        <input id="message-entry" class="input-reset pl2 flex-grow-1 ba b--gold bl-0 bt-0 br-0 bg-transparent outline-transparent lh-copy"
+                               type="textarea" aria-describedby="message-desc" autocomplete="off" autofocus style="caret-color:#ffb700;">
+                        
+                        <label for="file-attachment" class="pointer ph3 pv2 mr1 br2 br--top ba b--gold bg-gold f5 lh-copy">📎</label>
+                        <input id="file-attachment" type="file" capture class="clip">
+                        
+                        <input id="send-it" class="pointer ph3 pv2 br2 br--top ba b--gold bg-gold purple f5 fw9 lh-copy"
+                               type="submit" value="➤">
+                </form>
             </div>`
     }
 
@@ -89,7 +87,24 @@ class IpfsRoom extends HyperHTMLElement {
 
     showPeers() {
         let peers = this.room.getPeers()
-        serveToast(`connected peers: ${peers.join(', ')}`)
+        this.serveToast(`connected peers: ${peers.join(', ')}`)
+    }
+    showId() {
+        let peers = Ipfs
+        debugger
+    }
+
+    serveToast(msg) {
+        const toast = hyperHTML.wire()`<toast-announce entry="fadeInDown" exit="fadeOutUp">${msg}</toast-announce>`
+
+        let toastContainer = document.getElementById('toast-container')
+        if (!toastContainer) {
+            toastContainer = document.createElement('div')
+            toastContainer.id = 'toast-container'
+            toastContainer.className = `fixed top-1 right-1`
+            document.body.appendChild(toastContainer)
+        }
+        toastContainer.appendChild(toast)
     }
 }
 
