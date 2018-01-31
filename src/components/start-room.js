@@ -1,10 +1,5 @@
 import IpfsRoom from './ipfs-room'
 
-// in any other Web Component, import a React Component from element file: react-component.js
-// used in this file on L27-29
-import {ReactComponent, ReactSecond}  from './react-components'
-// import ReactSecond from './react-components'
-
 class StartRoom extends HyperHTMLElement {
     created() {
         this.className = 'dtc v-mid measure pa2 black-80 avenir fadeIn animated'
@@ -36,7 +31,11 @@ class StartRoom extends HyperHTMLElement {
                        type="text" aria-describedby="room-desc" placeholder="room name" autofocus>
                 <input class="button-reset w4 ph4 pv2 br-pill bn bg-purple pointer o-80 glow ttu tracked near-white"
                         type="submit" value="go">
-            </form>`
+            </form>
+            <div class="mw5 center mt3 pv2 ph3 orange bg-animate bg-light-blue hover-bg-orange hover-light-blue tc" onclick="${this}">Thinking in React</div>`
+    }
+    onclick() {
+        this.appendChild(hyperHTML.wire()`<thinking-react></thinking-react>`)
     }
 }
 

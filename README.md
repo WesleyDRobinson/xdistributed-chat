@@ -25,8 +25,12 @@ To add new components, create the .js file in `src` folder.
 And Import them where used and don't worry about duplicating, webpack will shake it out
 If element is used "top-level" in index.html, like `<app-shell></app-shell>`, import the component in `src/app.js`
 
-All config in place to load React powered Web Components from `src/components/react-components`
-Example components in place. Show me what you're working on, and I think I can wire it together.
+All the config is in place to build React powered Web Components in `src/components/react-components`
+For a very simple demo for wiring up a React App or component as a Web Component, check out L168-181 of `thinking-react.js`... the very bottom.
+It's a copy/paste from the [React Docs](https://reactjs.org/docs/thinking-in-react.html).
+
+I've written a couple more example components with a few different options for patterns.
+Please, show me what you're working on, and I'll see how we can wire it together and make development pleasant for all!
 
 To build for production, run `npm run build` and the `public` folder is ready to serve.
 ### Tooling
