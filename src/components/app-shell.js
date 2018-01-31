@@ -28,6 +28,7 @@ class AppShell extends HyperHTMLElement {
             // bind start-room element to app-shell
             hyperHTML.bind(this)`<start-room></start-room>`
 
+
             // "logging"
             console.log(`IPFS node ready with address ${data.id}`)
         }))
