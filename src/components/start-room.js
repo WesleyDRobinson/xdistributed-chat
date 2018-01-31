@@ -1,5 +1,10 @@
 import IpfsRoom from './ipfs-room'
 
+// in any other Web Component, import a React Component from element file: react-component.js
+// used in this file on L27-29
+import {ReactComponent, ReactSecond}  from './react-components'
+// import ReactSecond from './react-components'
+
 class StartRoom extends HyperHTMLElement {
     created() {
         this.className = 'dtc v-mid measure pa2 black-80 avenir fadeIn animated'
@@ -19,7 +24,12 @@ class StartRoom extends HyperHTMLElement {
 
     render() {
         return this.html`
+            <!-- include the custom element by name or use via document.createElement('react-component')-->
+            <react-component name="Joe"></react-component>
+            <react-second name="Sriram"></react-second>
+            <react-component class="fixed bottom-1"></react-component>
             <h1 class="f2 fw2 tc near-white courier">welcome to <span class="f3 fw7 near-black ttu avenir tracked">d</span>istributed <span class="f3 fw7 near-black ttu avenir tracked">c</span>hat</h1>
+            
             <form class="flex flex-column justify-center items-center mw6 center" onsubmit="${this}">
                 <label id="room-desc" for="room-name" class="mb3 near-black fw5">create or join a room</label>
                 <input id="room-name" class="input-reset w-80 pt2 mb3 bg-transparent ba b--light-purple bt-0 bl-0 br-0 bg-animate hover-bg-lightest-blue tc outline-transparent"
@@ -27,10 +37,6 @@ class StartRoom extends HyperHTMLElement {
                 <input class="button-reset w4 ph4 pv2 br-pill bn bg-purple pointer o-80 glow ttu tracked near-white"
                         type="submit" value="go">
             </form>`
-    }
-
-    typeIt() {
-
     }
 }
 
