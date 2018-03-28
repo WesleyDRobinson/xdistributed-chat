@@ -20,6 +20,7 @@ class StartRoom extends HyperHTMLElement {
     render() {
         return this.html`
             <h1 class="f2 fw2 tc near-white courier">welcome to <span class="f3 fw7 near-black ttu avenir tracked">d</span>istributed <span class="f3 fw7 near-black ttu avenir tracked">c</span>hat</h1>
+            
             <form class="flex flex-column justify-center items-center mw6 center" onsubmit="${this}">
                 <label id="room-desc" for="room-name" class="mb3 near-black fw5">create or join a room</label>
                 <input id="room-name" class="input-reset w-80 pt2 mb3 bg-transparent ba b--light-purple bt-0 bl-0 br-0 bg-animate hover-bg-lightest-blue tc outline-transparent"
@@ -27,10 +28,6 @@ class StartRoom extends HyperHTMLElement {
                 <input class="button-reset w4 ph4 pv2 br-pill bn bg-purple pointer o-80 glow ttu tracked near-white"
                         type="submit" value="go">
             </form>`
-    }
-
-    typeIt() {
-
     }
 }
 

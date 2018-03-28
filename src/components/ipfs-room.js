@@ -51,16 +51,16 @@ class IpfsRoom extends HyperHTMLElement {
 
     render() {
         this.html`
-            <div id="room-heading" class="o-80 flex items-center w-100 cf pa2 gradientGY avenir">
-                <h1 class="mv0 mr2 pv2 lh-title f2 fw2 tj near-white">${this.name}</h1> 
+            <div id="room-heading" class="o-80 flex justify-between items-center w-100 cf pa2 gradientGY avenir">
                 <div class="pointer grow ph2 pv2 br-pill ba b--purple bg-purple near-white tracked tc ttu f7" 
                         data-call="showPeers" onclick="${this}">${this.state.peers} peers</div>
-                <div class="absolute right-1 pointer grow fr ph2 pv2 br-pill ba b--blue bg-blue near-white tracked tc ttu f7" 
+                <h1 class="mv0 mr2 pv2 lh-title f3 f2-ns fw2 tj near-white">${this.name}</h1> 
+                <div class="pointer grow  ph2 pv2 br-pill ba b--blue bg-blue near-white tracked tc ttu f7" 
                         data-call="showId" onclick="${this}">my id</div>
             </div>
             
-            <div id="messaging" class="flex flex-column justify-end pa2 overflow-hidden">
-                <div id="output" class="mw8 mb1 overflow-scroll"></div>
+            <div id="messaging" class="flex flex-column justify-end pa2">
+                <div id="output" class="mw8 mb1"></div>
                 <form id="send-message" class="mw9 flex justify-around items-baseline ba b--gold bl-0 bt-0 br-0" data-call="sendIt" onsubmit="${this}">
                         <label id="message-desc" for="message-entry" class="clip">broadcast a message to the room</label>
                         <input id="message-entry" class="input-reset pl2 flex-grow-1 ba b--gold bl-0 bt-0 br-0 bg-transparent outline-transparent lh-copy"
@@ -89,9 +89,11 @@ class IpfsRoom extends HyperHTMLElement {
         let peers = this.room.getPeers()
         this.serveToast(`connected peers: ${peers.join(', ')}`)
     }
+
     showId() {
-        let peers = Ipfs
-        debugger
+        window.ipfsNode.id().then(data => {
+            this.serveToast(`my peerId: ${data.id}`)
+        })
     }
 
     serveToast(msg) {
