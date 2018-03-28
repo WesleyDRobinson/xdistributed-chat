@@ -4,6 +4,7 @@
   "description": "Demo at: https://pubsub-poc-ugdlbbvfsf.now.sh",
   "main": "index.js",
   "dependencies": {
+    "blob-to-buffer": "^1.2.7",
     "http-server": "^0.10.0",
     "ipfs": "^0.27.5",
     "ipfs-pubsub-room": "^1.1.4",
@@ -20,7 +21,7 @@
   "scripts": {
     "build": "./node_modules/.bin/babel src/components/react-components/*.js --out-file src/components/react-components.js --presets react && webpack src/app.js public/js/app.js",
     "build:watch": "webpack -w -d src/app.js public/js/app.js",
-    "deploy": "npm run build && now",
+    "deploy": "npm run build && now --static ./public",
     "dev": "npm-run-all -p build:watch react:babel:watch start",
     "react:babel:watch": "./node_modules/.bin/babel src/components/react-components/*.js -w --out-file src/components/react-components.js --presets react",
     "start": "http-server"

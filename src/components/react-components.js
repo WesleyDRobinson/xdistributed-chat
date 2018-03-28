@@ -295,7 +295,3 @@ class ThinkingReact extends HyperHTMLElement {
     }
 }
 ThinkingReact.define('thinking-react');
-
-/*
-* Usage:
-* */
