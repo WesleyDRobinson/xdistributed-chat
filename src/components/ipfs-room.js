@@ -52,10 +52,14 @@ class IpfsRoom extends HyperHTMLElement {
 
     render() {
         this.html`
-            <div id="room-heading" class="o-80 flex justify-between items-center w-100 cf pa2 gradientGY avenir">
+            <div id="room-heading" class="o-80 flex justify-around items-center w-100 cf pa2 gradientGY avenir">   
                 <div class="pointer grow ph2 pv2 br-pill ba b--purple bg-purple near-white tracked tc ttu f7" 
                         data-call="showPeers" onclick="${this}">${this.state.peers} peers</div>
-                <h1 class="mv0 mr2 pv2 lh-title f3 f2-ns fw2 tj near-white">${this.name}</h1> 
+                <div class="flex justify-center items-center ph3">
+                    <h1 class="mv0 mr2 pv2 lh-title f4 f2-ns fw2 tj near-white">${this.name}</h1> 
+                    <div class="pointer pv2 ph3 br-pill ba b--light-yellow bg-light-yellow gray tracked tc ttu f7"
+                        data-call=exit onclick=${this}>exit</div>        
+                </div>
                 <div class="pointer grow  ph2 pv2 br-pill ba b--blue bg-blue near-white tracked tc ttu f7" 
                         data-call="showId" onclick="${this}">my id</div>
             </div>
@@ -81,6 +85,11 @@ class IpfsRoom extends HyperHTMLElement {
     copyText(e) {
         copyTextToClipboard(e.target.textContent)
         this.serveToast('copied to clipboard')
+    }
+
+    exit() {
+        this.room.leave()
+        location.reload()
     }
 
     // triggered by... data-call="sendIt" onclick="${this}"
