@@ -12,11 +12,14 @@ class IpfsRoom extends HyperHTMLElement {
     }
 
     created() {
-        // generates a new Room
+        this.className = 'db h-100 flex flex-column justify-between animated slideInLeft'
+
+        // generate a new Room
         this.name = this.name || 'default-room-name'
         let room = Room(window.ipfsNode, this.name)
+        this.room = room
 
-        // add room functionality
+        // add functionality to the room
         // announces when a new peer joins the room
         room.on('peer joined', (peer) => {
             this.setState({peers: this.state.peers + 1})
@@ -44,8 +47,6 @@ class IpfsRoom extends HyperHTMLElement {
             output.appendChild(msgDiv)
         })
 
-        this.room = room
-        this.className = 'db h-100 flex flex-column justify-between animated slideInLeft'
         this.render()
     }
 
@@ -149,9 +150,9 @@ function copyTextToClipboard(text) {
     }
 
     // for the future!
-    navigator.clipboard.writeText(text).then(function() {
+    navigator.clipboard.writeText(text).then(function () {
         console.log('Async: Copying to clipboard was successful!')
-    }, function(err) {
+    }, function (err) {
         console.error('Async: Could not copy text: ', err)
     })
 }
