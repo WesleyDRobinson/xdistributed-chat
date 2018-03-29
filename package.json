@@ -21,7 +21,7 @@
   "scripts": {
     "build": "./node_modules/.bin/babel src/components/react-components/*.js --out-file src/components/react-components.js --presets react && webpack src/app.js public/js/app.js",
     "build:watch": "webpack -w -d src/app.js public/js/app.js",
-    "deploy": "npm run build && now --static ./public -n distributed",
+    "deploy": "npm run build && now --static ./public -n distributed-chat",
     "dev": "npm-run-all -p build:watch react:babel:watch start",
     "react:babel:watch": "./node_modules/.bin/babel src/components/react-components/*.js -w --out-file src/components/react-components.js --presets react",
     "release": "yarn version && now alias",
