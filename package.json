@@ -1,8 +1,8 @@
 {
-  "name": "pubsub-poc",
-  "version": "0.0.1",
-  "description": "Demo at: https://pubsub-poc-ugdlbbvfsf.now.sh",
-  "main": "index.js",
+  "name": "distributed-chat",
+  "version": "0.1.0",
+  "description": "a realtime-only, transparent, ephemeral, private, p2p chat client and IPFS file uploader",
+  "main": "src/app.js",
   "dependencies": {
     "blob-to-buffer": "^1.2.7",
     "http-server": "^0.10.0",
@@ -21,14 +21,14 @@
   "scripts": {
     "build": "./node_modules/.bin/babel src/components/react-components/*.js --out-file src/components/react-components.js --presets react && webpack src/app.js public/js/app.js",
     "build:watch": "webpack -w -d src/app.js public/js/app.js",
-    "deploy": "npm run build && now --static ./public",
+    "deploy": "npm run build && now --static ./public -n distributed",
     "dev": "npm-run-all -p build:watch react:babel:watch start",
     "react:babel:watch": "./node_modules/.bin/babel src/components/react-components/*.js -w --out-file src/components/react-components.js --presets react",
     "start": "http-server"
   },
   "now": {
     "public": true,
-    "alias": "distributed"
+    "alias": "distributed.now.sh"
   },
   "author": "2ep2",
   "license": "ISC",

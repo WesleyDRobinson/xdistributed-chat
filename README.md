@@ -1,28 +1,39 @@
-# POC - P2P Client connectivity
+# P2P Client connectivity
 
-Dependencies:
+![distributed chat screenshot](https://cldup.com/CQeFdCBUx7.png)
 
-* IPFS + [IPFS.js](https://github.com/ipfs/js-ipfs)
+> latest release: https://distributed.now.sh
 
-* [ipfs-pubsub-room](https://github.com/ipfs-shipyard/ipfs-pubsub-room)
+## What is it?
+A chat client + IPFS file uploader!
 
-Clients are assigned a unique ID and announce to other peers that they have joined a certain "room" (in this case 'presence-pod')
+To effectively communicate with other people, you'll need to enter the same room name.
 
-### Todos
+Peers are assigned a unique ID and announce to other peers when they join or leave any room.
 
-* Add "Show own peerId" button/ screen
-* Add service worker for "offline" capability—"offline" is becoming a fuzzy line :)
+## How is this different from SMS or email or Slack?
 
-Demo latest release: https://distributed.now.sh
+- *💯 Transparent*: the static site is 100% open sourced—simply add `/_src` to the end of any url to see the code
+- *🙅‍ P2P/ Truly Serverless*: send messages directly to your peers; there are **no servers**
+- *⏳ Realtime only*: messages are broadcast **only once** to the currently connected peers; new peers entering the room will not "catch up"
+- *🌫 Ephemeral*: while IPFS object names are permanent, your "permalinks" will only persists as long as some node requests it, for more info, see [Replication on IPFS](https://discuss.ipfs.io/t/replication-on-ipfs-or-the-backing-up-content-model/372) and [Permanence != Persistance](https://discuss.ipfs.io/t/how-permanent-is-data-stored-on-ipfs/354)
+- *🎭 Anonymous + 🔒 Private*: only information you choose to share is available to others on the network
 
-To run locally,
+## Why do I want this?
+You might not—it's a somewhat brittle means of communication. But in my experience, nothing else like this exists.
+ A free and powerful browser-based, zero-surveillance communication tool; you never know when you need to reliably and securely chat or share resources with your network.
+
+### Contributing
+
+
+#### Running locally
 
 1. `git clone git@bitbucket.org:presencetools/p2p-poc-browser.git`
 2. `npm install` or `yarn add`
 3. `npm run dev` or `yarn run dev`
 
-To add new components, create the .js file in `src` folder.
-And Import them where used and don't worry about duplicating, webpack will shake it out
+To add new components, create a `COMPONENT-NAME.js` file in `src` folder.
+`import` them where used and don't worry about duplicating, webpack will only include the
 If element is used "top-level" in index.html, like `<app-shell></app-shell>`, import the component in `src/app.js`
 
 All the config is in place to build React powered Web Components in `src/components/react-components`
@@ -33,12 +44,12 @@ I've written a couple more example components with a few different options for p
 Please, show me what you're working on, and I'll see how we can wire it together and make development pleasant for all!
 
 To build for production, run `npm run build` and the `public` folder is ready to serve.
-### Tooling
 
-CSS toolkits:
-tachyons.io: http://tachyons.io/
-animate.css: https://github.com/daneden/animate.css
+### Dependencies & Tooling
 
-Web Components:
-* built by extending the hyperHTMLElement: https://github.com/WebReflection/hyperHTML-Element
-* find more info on [hyperHTML wires](https://viperhtml.js.org/hyperhtml/documentation/#api-1)
+* IPFS + [IPFS.js](https://github.com/ipfs/js-ipfs)
+* [ipfs-pubsub-room](https://github.com/ipfs-shipyard/ipfs-pubsub-room)
+* CSS toolkits: [tachyons.io](http://tachyons.io/), [animate.css](https://github.com/daneden/animate.css)
+* Web Components built by extending the [hyperHTMLElement](https://github.com/WebReflection/hyperHTML-Element)
+* The app makes heavy use of [hyperHTML wires](https://viperhtml.js.org/hyperhtml/documentation/#api-1)
+* For future development, it's possible to use React inside Web Components.
