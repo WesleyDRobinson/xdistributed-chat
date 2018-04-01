@@ -1,14 +1,15 @@
 import LoadingConnector from './loading-connector'
 import StartRoom from './start-room'
+
 const {bind} = HyperHTMLElement
 
 class AppShell extends HyperHTMLElement {
     created() {
-        this.className = 'dt vh-100 w-100 bg-near-white gradientSquare'
+        this.className = 'flex flex-column justify-center vh-100 w-100 bg-near-white gradientSquare'
         bind(this)`<loading-connector></loading-connector>`
 
         // create Ipfs repo and node
-        const repo = () => `node/presence-poc/${Math.random()}`
+        const repo = () => `node/distributed-chat/${Math.random()}`
         const node = new Ipfs({
             repo: repo(),
             EXPERIMENTAL: {
@@ -24,23 +25,25 @@ class AppShell extends HyperHTMLElement {
             }
         })
 
-        node.once('ready', () => node.id((err, data) => {
-            if (err) throw err
-            // make node accessible on app-shell
-            window.ipfsNode = node
+        node.once('ready', () =>
+            node.id((err, data) => {
+                if (err) console.error(err)
+                // make node accessible to the window
+                window.ipfsNode = node
 
-            // bind start-room element to app-shell
-            bind(this)`<start-room></start-room>`
+                // bind start-room element to app-shell
+                bind(this)`<start-room></start-room>`
 
-
-            // "logging"
-            console.log(`IPFS node ready with address ${data.id}`)
-        }))
+                // "logging"
+                console.log(`IPFS node ready with address ${data.id}`)
+            }))
 
         this.render()
     }
 
-    render() {return this}
+    render() {
+        return this
+    }
 }
 
 AppShell.define('app-shell')
