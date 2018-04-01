@@ -1,8 +1,10 @@
 import IpfsRoom from './ipfs-room'
+import LearnMore from './learn-more'
 
+const {bind} = HyperHTMLElement
 class StartRoom extends HyperHTMLElement {
     created() {
-        this.className = 'dtc v-mid measure pa2 black-80 avenir fadeIn animated'
+        this.className = 'tc pa2 near-black avenir animated fadeIn'
         this.render()
     }
 
@@ -12,7 +14,7 @@ class StartRoom extends HyperHTMLElement {
 
         const appShell = document.querySelector('app-shell')
         setTimeout(() => {
-            hyperHTML.bind(appShell)`<ipfs-room name="${name}"></ipfs-room>`
+            bind(appShell)`<ipfs-room name="${name}"></ipfs-room>`
         }, 1000)
         this.classList.add('slideOutLeft')
     }
@@ -20,14 +22,16 @@ class StartRoom extends HyperHTMLElement {
     render() {
         return this.html`
             <h1 class="f2 fw2 tc near-white courier">welcome to <span class="f3 fw7 near-black ttu avenir tracked">d</span>istributed <span class="f3 fw7 near-black ttu avenir tracked">c</span>hat</h1>
-            
-            <form class="flex flex-column justify-center items-center mw6 center" onsubmit="${this}">
+                  
+            <form class="flex flex-column justify-center mb3 items-center mw6 center" onsubmit="${this}">
                 <label id="room-desc" for="room-name" class="mb3 near-black fw5">create or join a room</label>
                 <input id="room-name" class="input-reset w-80 pt2 mb3 bg-transparent ba b--light-purple bt-0 bl-0 br-0 bg-animate hover-bg-lightest-blue tc outline-transparent"
                        type="text" aria-describedby="room-desc" placeholder="room name" autofocus>
                 <input class="button-reset w4 ph4 pv2 br-pill bn bg-purple pointer o-80 glow ttu tracked near-white"
                         type="submit" value="go">
-            </form>`
+            </form>
+            
+            <learn-more></learn-more>`
     }
 }
 

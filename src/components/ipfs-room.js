@@ -1,6 +1,9 @@
 const Room = require('ipfs-pubsub-room')
 const toBuffer = require('blob-to-buffer')
+import StartRoom from './start-room'
 import ToastAnnounce from './toast-announce'
+
+const {bind, wire} = HyperHTMLElement
 
 class IpfsRoom extends HyperHTMLElement {
     static get observedAttributes() {
@@ -35,7 +38,7 @@ class IpfsRoom extends HyperHTMLElement {
         // build the message and add to messages output
         room.on('message', (message) => {
             // message.data is a buffer
-            let msgDiv = hyperHTML.wire(message)`
+            let msgDiv = wire(message)`
                 <div class="flex flex-wrap justify-between items-baseline near-black bg-transparent lh-copy slideInUp animated">
                     <div class="ph2 pt1 measure measure-wide-ns bg-animate hover-bg-near-white overflow-x-auto" data-call=copyText onclick=${this}>${message.data.toString()}</div>
                     <div class="dn db-ns mt1 ml3 mr1 ba b--purple b--dotted bl-0 bt-0 br-0 flex-grow-1 flex-shrink-1 f7"></div>
@@ -56,7 +59,7 @@ class IpfsRoom extends HyperHTMLElement {
                 <div class="pointer grow ph2 pv2 br-pill ba b--purple bg-purple near-white tracked tc ttu f7" 
                         data-call="showPeers" onclick="${this}">${this.state.peers} peers</div>
                 <div class="flex justify-center items-center ph3">
-                    <h1 class="mv0 mr2 pv2 lh-title f4 f2-ns fw2 tj near-white">${this.name}</h1> 
+                    <h1 class="mv0 mr2 pa2 br1 lh-title f4 f2-ns fw2 tj near-white bg-black-60">${this.name}</h1> 
                     <div class="pointer pv2 ph3 br-pill ba b--light-yellow bg-light-yellow gray tracked tc ttu f7"
                         data-call=exit onclick=${this}>exit</div>        
                 </div>
@@ -89,13 +92,18 @@ class IpfsRoom extends HyperHTMLElement {
 
     exit() {
         this.room.leave()
-        location.reload()
+        this.classList.add('slideOutLeft')
+        setTimeout(() => {
+            const appShell = document.querySelector('app-shell')
+            appShell.innerHTML = ''
+            bind(appShell)`<start-room></start-room>`
+        }, 1000)
     }
 
     // triggered by... data-call="sendIt" onclick="${this}"
     sendIt(e) {
         e.preventDefault()
-        let form = e.target // [0] == 'message-entry', [1] == 'file-attachment', [2] == ''
+        let form = e.target // [0] == 'message-entry', [1] == 'file-attachment', [2] == 'message-submit'
         form[2].blur()
         let msg = form[0].value
         let fileList = form[1].files
@@ -135,7 +143,7 @@ class IpfsRoom extends HyperHTMLElement {
     }
 
     serveToast(msg) {
-        const toast = hyperHTML.wire()`<toast-announce entry="fadeInDown" exit="fadeOutUp">${msg}</toast-announce>`
+        const toast = wire()`<toast-announce entry="fadeInDown" exit="fadeOutUp">${msg}</toast-announce>`
 
         let toastContainer = document.getElementById('toast-container')
         if (!toastContainer) {
@@ -159,11 +167,9 @@ function copyTextToClipboard(text) {
     }
 
     // for the future!
-    navigator.clipboard.writeText(text).then(function () {
-        console.log('Async: Copying to clipboard was successful!')
-    }, function (err) {
-        console.error('Async: Could not copy text: ', err)
-    })
+    navigator.clipboard.writeText(text)
+        .then(() => console.log('Async: Copying to clipboard was successful!'))
+        .catch(err => console.error('Async: Could not copy text: ', err))
 }
 
 function fallbackCopyTextToClipboard(text) {

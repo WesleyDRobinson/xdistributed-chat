@@ -5,23 +5,28 @@
 > latest release: https://distributed.now.sh
 
 ## What is it?
-A chat client + IPFS file uploader!
+- An anonymous way to communicate with a network; digital chat that is similar to vocal conversation in the physical world. The text is broadcast only to those present in the room. Messages only last as long as the receivers keep them in memory.
+- a chat client + IPFS file uploader!
 
-To effectively communicate with other people, you'll need to enter the same room name.
+To effectively communicate with other people, enter the same room name.
 
 Peers are assigned a unique ID and announce to other peers when they join or leave any room.
 
 ## How is this different from SMS or email or Slack?
 
+Distributed Chat is
+
+- * Distributed*: once an [InterPlanetary File System (IPFS)](https://ipfs.io) node is running in the browser, it will connect directly to other nodes with no central points of failure
 - *💯 Transparent*: the static site is 100% open sourced—simply add `/_src` to the end of any url to see the code
-- *🙅‍ P2P/ Truly Serverless*: send messages directly to your peers; there are **no servers**
+- *🙅‍ P2P/ Truly Serverless*: send messages directly to your peers; there are **no central servers**
 - *⏳ Realtime only*: messages are broadcast **only once** to the currently connected peers; new peers entering the room will not "catch up"
 - *🌫 Ephemeral*: while IPFS object names are permanent, your "permalinks" will only persists as long as some node requests it, for more info, see [Replication on IPFS](https://discuss.ipfs.io/t/replication-on-ipfs-or-the-backing-up-content-model/372) and [Permanence != Persistance](https://discuss.ipfs.io/t/how-permanent-is-data-stored-on-ipfs/354)
 - *🎭 Anonymous + 🔒 Private*: only information you choose to share is available to others on the network
+- * Avaialable*: runs in any browser; securely hosted and serverd by a global service: https://distributed.now.sh & https://dc.now.sh
 
 ## Why do I want this?
 You might not—it's a somewhat brittle means of communication. But in my experience, nothing else like this exists.
- A free and powerful browser-based, zero-surveillance communication tool; you never know when you need to reliably and securely chat or share resources with your network.
+ A free-to-use and powerful browser-based, zero-surveillance communication tool; you never know when you need to reliably and securely chat or share resources with your network.
 
 ### Contributing
 
