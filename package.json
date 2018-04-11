@@ -39,6 +39,6 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:presencetools/p2p-poc-browser.git"
+    "url": "git@github.com:WesleyDRobinson/distributed-chat.git"
   }
 }
