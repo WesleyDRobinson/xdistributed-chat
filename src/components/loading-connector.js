@@ -11,7 +11,7 @@ class LoadingConnector extends HyperHTMLElement {
 
     render() {
         return this.html`
-            <div class="pa3 tc athelas tracked near-white fw3 f2 animated fadeIn">
+            <div class="pa3 tc athelas tracked near-black bg-white-60 fw3 f2 animated fadeIn">
               CREATING IPFS NODE AND CONNECTING TO THE NETWORK
             </div>`
     }
