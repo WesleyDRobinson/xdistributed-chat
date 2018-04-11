@@ -11,7 +11,7 @@ class IpfsRoom extends HyperHTMLElement {
     }
 
     get defaultState() {
-        return {peers: 0}
+        return {peerCount: 0}
     }
 
     created() {
@@ -25,14 +25,14 @@ class IpfsRoom extends HyperHTMLElement {
         // add functionality to the room
         // announces when a new peer joins the room
         room.on('peer joined', (peer) => {
-            this.setState({peers: this.state.peers + 1})
-            this.serveToast(`peer joined: ${peer.slice(41)}`)
+            this.setState({peerCount: this.state.peerCount + 1})
+            this.serveToast(`${peer.slice(41)} joined the room`)
         })
 
         // announces when a peer leaves the room
         room.on('peer left', (peer) => {
-            this.setState({peers: this.state.peers - 1})
-            this.serveToast(`peer left: ${peer.slice(41)}`)
+            this.setState({peerCount: this.state.peerCount - 1})
+            this.serveToast(`${peer.slice(41)} left the room`)
         })
 
         // build the message and add to messages output
@@ -60,7 +60,7 @@ class IpfsRoom extends HyperHTMLElement {
             <article id="room-heading" class="animated zoomInUp">
                 <div class="flex justify-around items-center w-100 cf pa2 gradientGO avenir">
                     <div class="pointer grow ph2 pv2 br-pill ba b--purple bg-purple near-white tracked tc ttu f7" 
-                            data-call="showPeers" onclick="${this}">${this.state.peers} peers</div>
+                            data-call="showPeers" onclick="${this}">${this.state.peerCount} peers</div>
                     <div class="flex justify-center items-center ph3">
                         <h1 class="mv0 mr2 pa2 br1 lh-title f4 f3-ns fw2 near-white bg-black-60">${this.name}</h1> 
                         <div class="pointer pv2 ph3 br-pill ba b--light-yellow bg-light-yellow gray tracked tc ttu f7"
@@ -115,6 +115,7 @@ class IpfsRoom extends HyperHTMLElement {
         let msg = form[0].value
         let fileList = form[1].files
         let file = fileList[0]
+
         if (file && file.type.startsWith('image/')) {
             msg += 'tap or click the link to copy'
             toBuffer(file, (err, buffer) => {
@@ -133,7 +134,6 @@ class IpfsRoom extends HyperHTMLElement {
             })
         }
 
-
         this.room.broadcast(`${msg}`)
         form.reset()
     }
@@ -141,12 +141,12 @@ class IpfsRoom extends HyperHTMLElement {
     showPeers() {
         let peers = this.room.getPeers()
         let msg = peers.length === 0 ? `you are alone in this room` : `peers in the room: ${peers.map(peer => peer.slice(41)).join(', ')}`
-        this.serveToast()
+        this.serveToast(msg)
     }
 
     showId() {
         window.ipfsNode.id().then(data => {
-            this.serveToast(`my peerId: ${data.id.slice(41)}`)
+            this.serveToast(`your peer id is ${data.id.slice(41)}`)
         })
     }
 
