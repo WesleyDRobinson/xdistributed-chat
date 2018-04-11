@@ -1,6 +1,6 @@
 {
   "name": "distributed-chat",
-  "version": "0.1.1",
+  "version": "0.4.1",
   "description": "a realtime-only, transparent, ephemeral, private, p2p chat client and IPFS file uploader",
   "main": "src/app.js",
   "dependencies": {
@@ -21,7 +21,7 @@
   "scripts": {
     "build": "./node_modules/.bin/babel src/components/react-components/*.js --out-file src/components/react-components.js --presets react && webpack src/app.js public/js/app.js",
     "build:watch": "webpack -w -d src/app.js public/js/app.js",
-    "deploy": "npm run build && now --static ./public -n distributed-chat",
+    "deploy": "npm run build && now --static ./public -n distributed-chat --public",
     "dev": "npm-run-all -p build:watch react:babel:watch start",
     "react:babel:watch": "./node_modules/.bin/babel src/components/react-components/*.js -w --out-file src/components/react-components.js --presets react",
     "release": "yarn version && now alias",
@@ -29,7 +29,11 @@
   },
   "now": {
     "public": true,
-    "alias": "distributed.now.sh"
+    "alias": [
+      "distributed",
+      "dc",
+      "dchat"
+    ]
   },
   "author": "2ep2",
   "license": "ISC",

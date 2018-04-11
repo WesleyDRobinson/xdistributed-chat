@@ -48,6 +48,11 @@
             linear-gradient(90deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
             linear-gradient(270deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%)
 }
+.gradientGO {
+    background:
+            linear-gradient(90deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
+            linear-gradient(270deg, rgba(255, 157, 0, 0.81), rgba(255, 237, 253, 0) 61.8%)
+}
 .gradientGY {
     background:
             linear-gradient(90deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
