@@ -80,8 +80,8 @@ class IpfsRoom extends HyperHTMLElement {
                             <input id="message-entry" class="input-reset f4 pl2 flex-grow-1 ba b--gold bl-0 bt-0 br-0 bg-transparent outline-transparent lh-copy o-80"
                                    type="textarea" aria-describedby="message-desc" autocomplete="off" autofocus style="caret-color:#ffb700">
                             
-                            <label id="file-attachment-desc" class="clip">share a file with the room</label>
-                            <label for="file-attachment" class="pointer ph3 pv2 mr1 br2 br--top ba b--gold bg-gold f5 lh-copy">📎</label>
+                            <label id="file-attachment-desc" class="clip">share an image with the room</label>
+                            <label for="file-attachment" class="pointer ph3 pv2 mr1 br2 br--top ba b--gold bg-gold f5 lh-copy">📷</label>
                             <input id="file-attachment" type="file" class="clip" accept="image/*" aria-describedby="file-attachment-desc">
                             
                             <label for="message-submit" class="clip">submit the message and file</label>
