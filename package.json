@@ -1,6 +1,6 @@
 {
   "name": "distributed-chat",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "a realtime-only, transparent, ephemeral, private, p2p chat client and IPFS file uploader",
   "main": "src/app.js",
   "dependencies": {
