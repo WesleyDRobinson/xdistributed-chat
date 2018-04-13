@@ -15,7 +15,7 @@ class StartRoom extends HyperHTMLElement {
 
         const appShell = document.querySelector('app-shell')
         setTimeout(() => {
-            bind(appShell)`<ipfs-room name="${name}"/>`
+            bind(appShell)`<ipfs-room name="${name}"></ipfs-room>`
         }, 1000)
         this.classList.add('zoomOut')
     }
@@ -37,7 +37,7 @@ class StartRoom extends HyperHTMLElement {
                 <div class="w-100 flex justify-center">
                     <input class="w4 pv2 mh2 br-pill bn bg-purple pointer dim ttu tracked near-white"
                             type="submit" value="go">
-                    <learn-more />
+                    <learn-more></learn-more>
                 </div>
             </form>`
     }
@@ -48,7 +48,7 @@ class StartRoom extends HyperHTMLElement {
 
         const appShell = document.querySelector('app-shell')
         setTimeout(() => {
-            bind(appShell)`<ipfs-room name="${e.target.innerHTML}"/>`
+            bind(appShell)`<ipfs-room name="${e.target.innerHTML}"></ipfs-room>`
         }, 1000)
 
         this.classList.add('zoomOut')
