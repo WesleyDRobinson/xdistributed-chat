@@ -1,28 +1,28 @@
-import * as page from 'page'
-
-import AppShell from './components/app-shell'
+import LoadingConnector from './components/loading-connector'
 import StartRoom from './components/start-room'
 import IpfsRoom from './components/ipfs-room'
 
-window.page = page
-
-const {bind} = hyperHTML
-const create = element => document.createElement(element)
-const appShell = document.querySelector('app-shell')
+const {bind} = HyperHTMLElement
+const appShell = document.getElementById('app-shell')
 
 page('*', ipfsNodeCheck)
-page('/', start)
+page('/', main)
 page('/room', joinRoom)
 page('/room/:name', joinRoom)
-page('/user/', user)
+page('/user', '/')
+page('*', '/')
 page()
 
 function ipfsNodeCheck(ctx, next) {
-    if (ctx.state.ipfsNode) {
+    if (window.ipfsNode) {
         next()
     } else {
+
+        // show loader
+        bind(appShell)`<loading-connector></loading-connector>`
+
         // create Ipfs repo and node
-        const repoId = () => `node/presence-poc/${Math.random()}`
+        const repoId = () => `node/distributed-chat/${Math.random()}`
         const node = new Ipfs({
             repo: repoId(),
             EXPERIMENTAL: {
@@ -40,8 +40,9 @@ function ipfsNodeCheck(ctx, next) {
 
         node.once('ready', () => node.id((err, data) => {
             if (err) throw err
-            // make node accessible on ctx.state object
-            ctx.state.ipfsNode = node
+            // make node accessible to window and note in ctx.state object
+            window.ipfsNode = node
+            ctx.state.ipfsNode = true
 
             // "logging"
             console.log(`IPFS node ready with address ${data.id}`)
@@ -51,31 +52,12 @@ function ipfsNodeCheck(ctx, next) {
     }
 }
 
-
-function user() {
-}
-
 function joinRoom(ctx) {
-    ctx.state.room = ctx.params.name || 'default-room-name'
+    ctx.state.room = ctx.params.name || 'cat videos plz'
     bind(appShell)`<ipfs-room name="${ctx.state.room}"></ipfs-room>`
 }
 
-function start(ctx, next) {
-
-    // create tracker and send initial pageview to Google Analytics
-    window.ga = window.ga || function () {
-        (ga.q = ga.q || []).push(arguments)
-    }
-    ga.l = +new Date
-    // ga('create', 'UA-68515019-1', 'auto')
-    ga('send', 'pageview')
-
+function main(ctx, next) {
     // bind start-room element to app-shell
     bind(appShell)`<start-room></start-room>`
-}
-
-// needed to enable correct forward/back button with bfcache browsers:
-// https://developer.mozilla.org/en-US/Firefox/Releases/1.5/Using_Firefox_1.5_caching
-window.onpageshow = event => {
-    if (event.persisted) window.location.reload()
 }
