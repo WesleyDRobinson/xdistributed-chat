@@ -1,7 +1,8 @@
-const Room = require('ipfs-pubsub-room')
-const toBuffer = require('blob-to-buffer')
 import StartRoom from './start-room'
 import ToastAnnounce from './toast-announce'
+
+const Room = require('ipfs-pubsub-room')
+const toBuffer = require('blob-to-buffer')
 
 const {bind, wire} = HyperHTMLElement
 
@@ -15,7 +16,7 @@ class IpfsRoom extends HyperHTMLElement {
     }
 
     created() {
-        this.className = 'db h-100 flex flex-column justify-between animated zoomIn'
+        this.className = 'db h-100 flex flex-column justify-between animated'
 
         // generate a new Room
         this.name = this.name || 'cat videos plz'

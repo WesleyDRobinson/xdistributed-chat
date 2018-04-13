@@ -37,7 +37,7 @@ class StartRoom extends HyperHTMLElement {
                 <div class="w-100 flex justify-center">
                     <input class="w4 pv2 mh2 br-pill bn bg-purple pointer dim ttu tracked near-white"
                             type="submit" value="go">
-                    <learn-more />
+                    <learn-more></learn-more>
                 </div>
             </form>`
     }
