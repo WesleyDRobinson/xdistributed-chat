@@ -6,7 +6,7 @@ const {bind} = HyperHTMLElement
 class AppShell extends HyperHTMLElement {
     created() {
         this.className = 'flex flex-column justify-center vh-100 w-100 bg-near-white gradientSquare'
-        bind(this)`<loading-connector></loading-connector>`
+        bind(this)`<loading-connector/>`
 
         // create Ipfs repo and node
         const repo = () => `node/distributed-chat/${Math.random()}`
@@ -32,7 +32,7 @@ class AppShell extends HyperHTMLElement {
                 window.ipfsNode = node
 
                 // bind start-room element to app-shell
-                bind(this)`<start-room></start-room>`
+                bind(this)`<start-room/>`
 
                 // "logging"
                 console.log(`IPFS node ready with address ${data.id}`)
