@@ -8,6 +8,7 @@
     "ipfs-pubsub-room": "^1.1.4"
   },
   "devDependencies": {
+    "express": "^4.16.3",
     "http-server": "^0.10.0",
     "npm-run-all": "^4.1.2",
     "webpack": "^3.10.0"
@@ -18,7 +19,7 @@
     "deploy": "npm run build && now --static ./public -n distributed-chat --public",
     "dev": "npm-run-all -p build:watch start",
     "release": "yarn version && now alias",
-    "start": "http-server"
+    "start": "node devServer.js"
   },
   "now": {
     "public": true,
