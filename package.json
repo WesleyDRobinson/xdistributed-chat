@@ -1,40 +1,37 @@
 {
   "name": "distributed-chat",
-  "version": "0.1.1",
+  "version": "0.5.0",
   "description": "a realtime-only, transparent, ephemeral, private, p2p chat client and IPFS file uploader",
   "main": "src/app.js",
   "dependencies": {
     "blob-to-buffer": "^1.2.7",
-    "http-server": "^0.10.0",
-    "ipfs": "^0.27.5",
-    "ipfs-pubsub-room": "^1.1.4",
-    "js-ipfs": "0.0.301",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "ipfs-pubsub-room": "^1.1.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-react": "^6.24.1",
+    "http-server": "^0.10.0",
     "npm-run-all": "^4.1.2",
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "build": "./node_modules/.bin/babel src/components/react-components/*.js --out-file src/components/react-components.js --presets react && webpack src/app.js public/js/app.js",
+    "build": "webpack src/app.js public/js/app.js",
     "build:watch": "webpack -w -d src/app.js public/js/app.js",
-    "deploy": "npm run build && now --static ./public -n distributed-chat",
-    "dev": "npm-run-all -p build:watch react:babel:watch start",
-    "react:babel:watch": "./node_modules/.bin/babel src/components/react-components/*.js -w --out-file src/components/react-components.js --presets react",
+    "deploy": "npm run build && now --static ./public -n distributed-chat --public",
+    "dev": "npm-run-all -p build:watch start",
     "release": "yarn version && now alias",
     "start": "http-server"
   },
   "now": {
     "public": true,
-    "alias": "distributed.now.sh"
+    "alias": [
+      "distributed",
+      "dc",
+      "dchat"
+    ]
   },
-  "author": "2ep2",
+  "author": "wesley",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:presencetools/p2p-poc-browser.git"
+    "url": "git@github.com:WesleyDRobinson/distributed-chat.git"
   }
 }
