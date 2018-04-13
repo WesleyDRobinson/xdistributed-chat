@@ -15,7 +15,7 @@ class StartRoom extends HyperHTMLElement {
 
         const appShell = document.querySelector('app-shell')
         setTimeout(() => {
-            bind(appShell)`<ipfs-room name="${name}"></ipfs-room>`
+            bind(appShell)`<ipfs-room name="${name}"/>`
         }, 1000)
         this.classList.add('zoomOut')
     }
@@ -48,7 +48,7 @@ class StartRoom extends HyperHTMLElement {
 
         const appShell = document.querySelector('app-shell')
         setTimeout(() => {
-            bind(appShell)`<ipfs-room name="${e.target.innerHTML}"></ipfs-room>`
+            bind(appShell)`<ipfs-room name="${e.target.innerHTML}"/>`
         }, 1000)
 
         this.classList.add('zoomOut')
