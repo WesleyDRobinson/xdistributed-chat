@@ -19,7 +19,7 @@ class IpfsRoom extends HyperHTMLElement {
         this.className = 'db h-100 flex flex-column justify-between animated'
 
         // generate a new Room
-        this.name = this.name || 'cat videos plz'
+        this.name = this.name || 'default-room-name'
         let room = Room(window.ipfsNode, this.name)
         this.room = room
 
@@ -54,6 +54,10 @@ class IpfsRoom extends HyperHTMLElement {
         })
 
         this.render()
+    }
+
+    disconnectedCallback() {
+        this.room.leave()
     }
 
     render() {
@@ -102,9 +106,7 @@ class IpfsRoom extends HyperHTMLElement {
         this.room.leave()
         this.classList.add('zoomOut')
         setTimeout(() => {
-            const appShell = document.querySelector('app-shell')
-            appShell.innerHTML = ''
-            bind(appShell)`<start-room></start-room>`
+            page('/')
         }, 1000)
     }
 
