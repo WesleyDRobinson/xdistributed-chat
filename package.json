@@ -1,6 +1,6 @@
 {
   "name": "distributed-chat",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "a realtime-only, transparent, ephemeral, private, p2p chat client and IPFS file uploader",
   "dependencies": {
     "blob-to-buffer": "^1.2.7",
@@ -14,7 +14,8 @@
   "scripts": {
     "build": "webpack src/app.js public/js/app.js",
     "build:watch": "webpack -w -d src/app.js public/js/app.js",
-    "deploy": "npm run build && now --static ./public -n distributed-chat --public",
+    "deploy": "now --public",
+    "deploy:static": "npm run build && now --static ./public -n distributed-chat --public",
     "dev": "npm-run-all -p build:watch start",
     "release": "yarn version && now alias",
     "start": "node server.js"
