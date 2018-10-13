@@ -1,0 +1,85 @@
+.gradientHex {
+    background:
+            linear-gradient(0deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%),
+            linear-gradient(60deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
+            linear-gradient(120deg, rgba(255, 215, 0, 0.81), rgba(255, 252, 235, 0) 61.8%),
+            linear-gradient(180deg, rgba(255, 99, 0, 0.81), rgba(255, 237, 253, 0) 61.8%),
+            linear-gradient(240deg, rgba(255, 65, 54, 0.81), rgba(255, 223, 223, 0) 61.8%),
+            linear-gradient(300deg, rgba(94, 44, 165, 0.81), rgba(240, 235, 252, 0) 61.8%)
+}
+.gradientPent {
+    background:
+            linear-gradient(0deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%),
+            linear-gradient(60deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
+            linear-gradient(120deg, rgba(255, 215, 0, 0.81), rgba(255, 252, 235, 0) 61.8%),
+            linear-gradient(180deg, rgba(255, 99, 0, 0.81), rgba(255, 237, 253, 0) 61.8%),
+            linear-gradient(240deg, rgba(255, 65, 54, 0.81), rgba(255, 223, 223, 0) 61.8%)
+}
+.gradientSquare {
+    background:
+            linear-gradient(0deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%),
+            linear-gradient(90deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
+            linear-gradient(180deg, rgba(255, 215, 0, 0.81), rgba(255, 252, 235, 0) 61.8%),
+            linear-gradient(270deg, rgba(255, 65, 54, 0.81), rgba(255, 223, 223, 0) 61.8%)
+}
+.gradientTriangle {
+    background:
+            linear-gradient(0deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%),
+            linear-gradient(120deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
+            linear-gradient(240deg, rgba(255, 99, 0, 0.81), rgba(255, 237, 253, 0) 61.8%)
+}
+.gradientBR {
+    background:
+            linear-gradient(90deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%),
+            linear-gradient(270deg, rgba(255, 65, 54, 0.81), rgba(255, 223, 223, 0) 61.8%)
+}
+.gradientRB {
+    background:
+            linear-gradient(90deg, rgba(255, 65, 54, 0.81), rgba(255, 223, 223, 0) 61.8%),
+            linear-gradient(270deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%)
+}
+.gradientBG {
+    background:
+            linear-gradient(90deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%),
+            linear-gradient(270deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%)
+}
+.gradientGB {
+    background:
+            linear-gradient(90deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
+            linear-gradient(270deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%)
+}
+.gradientGO {
+    background:
+            linear-gradient(90deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
+            linear-gradient(270deg, rgba(255, 157, 0, 0.81), rgba(255, 237, 253, 0) 61.8%)
+}
+.gradientGY {
+    background:
+            linear-gradient(90deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
+            linear-gradient(270deg, rgba(255, 215, 0, 0.81), rgba(255, 252, 235, 0) 61.8%)
+}
+.gradientYG {
+    background:
+            linear-gradient(90deg, rgba(255, 215, 0, 0.81), rgba(255, 252, 235, 0) 61.8%),
+            linear-gradient(270deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%)
+}
+.gradientBY {
+    background:
+            linear-gradient(90deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%),
+            linear-gradient(270deg, rgba(255, 215, 0, 0.81), rgba(255, 252, 235, 0) 61.8%)
+}
+.gradientYB {
+    background:
+            linear-gradient(90deg, rgba(255, 215, 0, 0.81), rgba(255, 252, 235, 0) 61.8%),
+            linear-gradient(270deg, rgba(53, 126, 221, 0.81), rgba(246, 255, 254, 0) 61.8%)
+}
+.gradientGR {
+    background:
+            linear-gradient(90deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%),
+            linear-gradient(270deg, rgba(255, 65, 54, 0.81), rgba(255, 237, 253, 0) 61.8%)
+}
+.gradientRG {
+    background:
+            linear-gradient(90deg, rgba(255, 65, 54, 0.81), rgba(255, 237, 253, 0) 61.8%),
+            linear-gradient(270deg, rgba(25, 169, 116, 0.81), rgba(232, 253, 245, 0) 61.8%)
+}
