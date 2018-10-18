@@ -1,0 +1,37 @@
+{
+  "name": "distributed-chat",
+  "version": "0.7.0",
+  "description": "a realtime-only, transparent, ephemeral, private, p2p chat client and IPFS file uploader",
+  "dependencies": {
+    "blob-to-buffer": "^1.2.7",
+    "express": "^4.16.3",
+    "ipfs-pubsub-room": "^1.4.0",
+    "webpack": "^4.21.0"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.2"
+  },
+  "scripts": {
+    "build": "webpack src/app.js public/js/app.js",
+    "build:watch": "webpack -w -d src/app.js public/js/app.js",
+    "deploy": "now --public",
+    "deploy:static": "npm run build && now --static ./public -n distributed-chat --public",
+    "dev": "npm-run-all -p build:watch start",
+    "release": "yarn version && now alias",
+    "start": "node server.js"
+  },
+  "now": {
+    "public": true,
+    "alias": [
+      "distributed",
+      "dc",
+      "dchat"
+    ]
+  },
+  "author": "wesley",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:WesleyDRobinson/distributed-chat.git"
+  }
+}
