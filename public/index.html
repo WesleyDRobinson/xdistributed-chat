@@ -36,11 +36,12 @@
     <link rel="stylesheet" href="/css/gradients.css">
     <link rel="stylesheet" href="/css/styles.css">
 
-    <!-- hyperHTML for building web components -->
+    <!-- polyfill for customElements -->
     <script>window.customElements || document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/document-register-element/1.8.1/document-register-element.js"><' + '/script>')</script>
+    <!-- exposes global: hyperHTMLElement for building custom elements -->
     <script src="//unpkg.com/hyperhtml-element@latest/min.js"></script>
 
-    <!-- browser routing -->
+    <!-- client-side routing -->
     <script src="https://unpkg.com/page/page.js"></script>
 
     <noscript>
